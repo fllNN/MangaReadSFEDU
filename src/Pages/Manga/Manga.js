@@ -12,7 +12,7 @@ const mangaData = {
 };
 
 export const MangaDescriptionPage = () => {
-    //useParams, если у есть динамический URL
+    //useParams, если есть динамический URL
     const { mangaId } = useParams();
 
     // Здесь вы можете получить данные манги по ID, если они хранятся в базе данных или API
