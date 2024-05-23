@@ -1,0 +1,113 @@
+.btn{
+    border-radius: 40px;
+    font-weight: bold;
+}
+
+/* Центрирование бренда и ссылок навигации */
+.navbar-brand, .navbar-nav {
+    flex: 1;
+    justify-content: center;
+    display: flex;
+}
+
+.modal-content {
+    background-color: #343434; /* Фоновый цвет всплывающего окна */
+    border-radius: 40px; /* Скругление углов всплывающего окна */
+}
+
+.form-control {
+    border-radius: 40px; /* Скругление углов полей формы */
+}
+
+/* Центрирование кнопки 'Войти' */
+.ms-auto {
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+
+.btn-primary {
+    background-color: #EEEEEE;
+    color: #343434;
+    border-color: #EEEEEE;
+}
+
+.btn-primary:hover {
+    background-color: #343434;
+    border-color: #343434;
+}
+
+.btn-primary-check + .btn-primary:hover {
+    background-color: #343434;
+    border-color: #343434;
+}
+
+.navbar {
+    background-color: #343434;
+}
+
+.search-button {
+    background-color: #343434; /* Цвет кнопки */
+    border-color: #343434; /* Цвет границы кнопки */
+    color: #a3a3a3;
+    font-weight: bold;
+}
+
+.search-input {
+    border-radius: 40px; /* Скругление углов */
+}
+
+.form-control,
+.form-check-input {
+    color: #eeeeee; /* Цвет текста полей формы */
+    background-color: #eeeeee; /* Фоновый цвет полей формы */
+    border: 1px solid #eeeeee; /* Цвет границы полей формы */
+}
+
+/* Изменение цвета текста меток формы */
+.form-label {
+    color: #eeeeee;
+}
+
+/* Изменение цвета текста для чекбокса 'запомнить меня' */
+.form-check-label {
+    color: #eeeeee;
+}
+
+/* Убедитесь, что цвет плейсхолдера также изменен */
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #eeeeee;
+    opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #eeeeee;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+    color: #eeeeee;
+}
+
+.form-group {
+    margin-bottom: 1rem; /* Увеличиваем отступ снизу для всех .form-group */
+}
+
+#emailFormGroup {
+    margin-bottom: 1rem;
+}
+
+.modal-title {
+    color: #eeeeee; /* Цвет текста заголовка модального окна */
+    font-weight: bold;
+}
+
+
+h1 {
+    color:#EEEEEE;
+}
+
+body {
+    background-color: #292929;
+    font-weight: bold;
+  }
+  
