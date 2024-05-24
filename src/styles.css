@@ -3,12 +3,30 @@
     font-weight: bold;
 }
 
+.star-rating .star {
+    color: #eeeeee;
+  }
+  
+  .star-rating .on {
+    color: #ffc107;
+  }
+  
+  .star-rating .off {
+    color: #e4e5e9;
+  }
+
+a {
+    text-decoration: none !important;
+}
+
 /* Центрирование бренда и ссылок навигации */
 .navbar-brand, .navbar-nav {
     flex: 1;
     justify-content: center;
+    color: #eeeeee;
     display: flex;
 }
+
 
 .modal-content {
     background-color: #343434; /* Фоновый цвет всплывающего окна */

@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import animeHeadIcon from './anih.png';
 import { Button, Nav, Navbar, Modal, Form, FormControl } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
@@ -14,15 +15,44 @@ export default function Navibar() {
     // Функция для переключения между формами
     const toggleForm = () => setIsLogin(!isLogin);
 
+    const handleLogoClick = () => {};
+
+    useEffect(() => {
+        // Функция для проверки клика вне элемента поиска
+        const handleClickOutside = (event) => {
+            if (search && !document.querySelector('.search-input').contains(event.target)) {
+                setSearch(false);
+            }
+        };
+
+        // Добавляем слушатель события клика для всего документа
+        document.addEventListener('mousedown', handleClickOutside);
+
+        // Удаляем слушатель события при размонтировании компонента
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [search]); // Зависимость от состояния search
+
     return (
         <>
             <Navbar collapseOnSelect expand="lg" bg="#343434" variant="dark">
-                <Navbar.Brand>MangaRead</Navbar.Brand>
+                <Link to="/" style={{ display: 'flex', alignItems: 'center', marginLeft: '210px' }}>
+                    <img
+                        src={animeHeadIcon}
+                        alt="Anime Head Icon"
+                        onClick={handleLogoClick}
+                        style={{cursor: 'pointer' }}
+                    />
+                    <Navbar.Brand as={Link} to="/" style={{ cursor: 'pointer', textDecoration: 'none' }}>
+                        MangaRead
+                    </Navbar.Brand>
+                </Link>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
-                    <Nav className="mr-auto">
-                        <Nav.Link as={Link} to="/">Главная</Nav.Link>
-                        <Nav.Link as={Link} to="/favorites">Избранное</Nav.Link>
+                    <Nav className="mr-auto" style={{ marginLeft: '120px' }}> 
+                        <Nav.Link as={Link} to="/">Главная</Nav.Link> 
+                        <Nav.Link as={Link} to="/favorites">Избранное</Nav.Link> 
                         {search ? (
                             <FormControl
                                 type="text"
@@ -30,11 +60,12 @@ export default function Navibar() {
                                 className="mr-sm-2 search-input"
                                 autoFocus
                             />
-                        ) : (
+                            ) : (
                             <Button variant="outline-info" onClick={handleSearchToggle} className="search-button">
                                 Поиск
                             </Button>
                         )}
+                        <Nav.Link as={Link} to="/catalog">Каталог</Nav.Link>
                     </Nav>
                     <Nav className="ms-auto">
                         <Button variant="primary" onClick={handleShow}>

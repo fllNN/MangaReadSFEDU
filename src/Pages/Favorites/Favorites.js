@@ -11,18 +11,18 @@ const favoritesData = [
     },
 
     {
-        title: 'Манга 1',
+        title: 'Манга 2',
         releaseYear: '2020',
         chapter: 'Глава 10',
-        description: 'Описание манги 1',
+        description: 'Описание манги 2',
         imageUrl: 'https://xlm.ru/storage/uploads/images/2021/01/11/GgFj6JSC832ES6mhh5dXHCIw0YzXH1wTh5zEkLos.jpeg',
     },
 
     {
-        title: 'Манга 1',
+        title: 'Манга 3',
         releaseYear: '2020',
         chapter: 'Глава 10',
-        description: 'Описание манги 1',
+        description: 'Описание манги 3',
         imageUrl: 'https://xlm.ru/storage/uploads/images/2021/01/11/GgFj6JSC832ES6mhh5dXHCIw0YzXH1wTh5zEkLos.jpeg',
     },
 ];
