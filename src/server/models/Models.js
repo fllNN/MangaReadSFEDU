@@ -12,7 +12,7 @@ export const Users = sequelize.define('users', {
     },
     name: {
         type: DataTypes.STRING(50),
-        allowNull: false
+        allowNull: true
     },
     email: {
         type: DataTypes.STRING(50),
