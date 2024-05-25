@@ -1,0 +1,3 @@
+{
+    "dbURL": "postgres://postgres:postgres@localhost:5433/Manga"
+}
