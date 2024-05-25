@@ -120,7 +120,9 @@ export default function Navibar() {
                     )}
                 </Modal.Body>
                 <Modal.Footer>
+                <Link to="/profile">
                     <Button variant="primary">{isLogin ? 'Войти' : 'Зарегистрироваться'}</Button>
+                </Link>
                 </Modal.Footer>
             </Modal>
         </>

@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Card, Container, Row, Col, Image, Button} from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import CommentsSection from '../../Components/CommentsSection';
 
 const mangaData = {
     title: 'Название манги',
@@ -72,6 +73,7 @@ export const MangaDescriptionPage = () => {
                     </ul>
                 </Col>
             </Row>
+            <CommentsSection />
         </Container>
     );
 };

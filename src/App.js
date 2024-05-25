@@ -7,6 +7,7 @@ import { Home } from './Pages/Home/Home';
 import { Favorites } from './Pages/Favorites/Favorites';
 import { Catalog } from './Pages/Catalog/Catalog';
 import { MangaDescriptionPage } from './Pages/Manga/Manga';
+import {ProfilePage} from './Pages/Profile/Profile.js';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/favorites" element={<Favorites />} />
           <Route path="/catalog" element={<Catalog />} />
           <Route path="/manga/:mangaId" element={<MangaDescriptionPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
         </Routes>
       </Router>
       <Footer />
