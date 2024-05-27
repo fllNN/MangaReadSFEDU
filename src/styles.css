@@ -3,6 +3,41 @@
     font-weight: bold;
 }
 
+.input-background {
+    background-color: #eeeeee;
+}
+
+.list-group {
+  background-color: #343434;
+  border-radius: 25px;
+  border-color: #343434;
+  /* Другие стили... */
+}
+
+.list-group-item {
+  /* Стили для элементов списка */
+  padding: 10px;
+  color: #eeeeee;
+  background-color: #343434;
+  border-color: #343434;
+}
+
+
+.list-group-item:hover {
+    background-color: #EEEEEE;
+    color: #343434
+}
+
+.list-group-item:active {
+    background-color: #eeeeee;
+    color: #343434
+}
+
+.list-group-item:focus {
+    background-color: #EEEEEE;
+    color: #343434
+}
+
 /* Стили для формы фильтров */
 .form-group {
     margin-bottom: 1rem; /* Увеличивает отступ снизу */
@@ -165,7 +200,7 @@ a {
 }
 
 
-h1 {
+h1, h2, h3, h4, h5, h6 {
     color:#EEEEEE;
 }
 

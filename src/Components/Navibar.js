@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import animeHeadIcon from './anih.png';
 import { Button, Nav, Navbar, Modal, Form, FormControl } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import '../styles.css'
 
 export default function Navibar() {
     const [showModal, setShowModal] = useState(false);
@@ -52,7 +53,8 @@ export default function Navibar() {
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="mr-auto" style={{ marginLeft: '120px' }}> 
                         <Nav.Link as={Link} to="/">Главная</Nav.Link> 
-                        <Nav.Link as={Link} to="/favorites">Избранное</Nav.Link> 
+                        <Nav.Link as={Link} to="/favorites">Избранное</Nav.Link>
+                        <Nav.Link as={Link} to="/catalog">Каталог</Nav.Link>
                         {search ? (
                             <FormControl
                                 type="text"
@@ -65,7 +67,6 @@ export default function Navibar() {
                                 Поиск
                             </Button>
                         )}
-                        <Nav.Link as={Link} to="/catalog">Каталог</Nav.Link>
                     </Nav>
                     <Nav className="ms-auto">
                         <Button variant="primary" onClick={handleShow}>
@@ -85,14 +86,14 @@ export default function Navibar() {
                         <Form>
                             <Form.Group controlId="fromBasicEmail" id="emailFormGroup">
                                 <Form.Label>Email</Form.Label>
-                                <Form.Control type="email" placeholder="Введите почту" />
+                                <Form.Control type="email" placeholder="Введите почту" style={{backgroundColor: '#eeeeee'}}/>
                             </Form.Group>
                             <Form.Group controlId="fromBasicPassword" className="mb-3">
                                 <Form.Label>Пароль</Form.Label>
-                                <Form.Control type="password" placeholder="Введите пароль" />
+                                <Form.Control type="password" placeholder="Введите пароль" style={{backgroundColor: '#eeeeee'}}/>
                             </Form.Group>
                             <Form.Group controlId="fromBasicCheckbox">
-                                <Form.Check type="checkbox" label="запомнить меня" />
+                                <Form.Check type="checkbox" label="запомнить меня" style={{color: '#eeeeee'}}/>
                             </Form.Group>
                             <div className="mt-3">
                                 Нет аккаунта? <span className="link-primary" style={{ cursor: 'pointer' }} onClick={toggleForm}>Зарегистрироваться</span>
@@ -103,15 +104,15 @@ export default function Navibar() {
                         <Form>
                             <Form.Group controlId="fromBasicEmail" id="emailFormGroup">
                                 <Form.Label>Email</Form.Label>
-                                <Form.Control type="email" placeholder="Введите почту" />
+                                <Form.Control type="email" placeholder="Введите почту" style={{backgroundColor: '#eeeeee'}}/>
                             </Form.Group>
                             <Form.Group controlId="fromBasicPassword" className="mb-3">
                                 <Form.Label>Пароль</Form.Label>
-                                <Form.Control type="password" placeholder="Введите пароль" />
+                                <Form.Control type="password" placeholder="Введите пароль" style={{backgroundColor: '#eeeeee'}}/>
                             </Form.Group>
                             <Form.Group controlId="fromBasicPasswordRepeat" className="mb-3">
                                 <Form.Label>Повторите пароль</Form.Label>
-                                <Form.Control type="password" placeholder="Введите пароль еще раз" />
+                                <Form.Control type="password" placeholder="Введите пароль еще раз" style={{backgroundColor: '#eeeeee'}}/>
                             </Form.Group>
                             <div className="mt-3">
                                 Уже есть аккаунт? <span className="link-primary" style={{ cursor: 'pointer' }} onClick={toggleForm}>Войти</span>

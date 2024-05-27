@@ -177,9 +177,11 @@ export const Catalog = () => {
 
         {/* Колонка с карточками манги */}
         <Col xs={12} md={9}>
+        
           <Row style={{marginTop: '20px'}}>
             {mangaList.map((manga, index) => (
               <Col xs={12} sm={6} md={4} lg={3} key={index}>
+                <Link to={`/manga/${manga.id}`}>
                 <MangaCard className="mb-4" 
                 key={index}
                 title={manga.title}
@@ -187,6 +189,7 @@ export const Catalog = () => {
                 imageUrl={manga.imageUrl}
                 rating={manga.rating}
                 ageRating={manga.ageRating}/>
+                </Link>
               </Col>
             ))}
           </Row>

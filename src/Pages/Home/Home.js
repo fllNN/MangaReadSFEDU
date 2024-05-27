@@ -23,6 +23,7 @@ const recommendationsData = [
   },
 
   {
+    id: 'manga2',
     title: 'Манга 2',
     description: 'Глава',
     imageUrl: 'https://xlm.ru/storage/uploads/images/2021/01/11/GgFj6JSC832ES6mhh5dXHCIw0YzXH1wTh5zEkLos.jpeg',
@@ -31,6 +32,7 @@ const recommendationsData = [
   },
 
   {
+    id: 'manga3',
     title: 'Манга 3',
     description: 'Глава',
     imageUrl: 'https://xlm.ru/storage/uploads/images/2021/01/11/GgFj6JSC832ES6mhh5dXHCIw0YzXH1wTh5zEkLos.jpeg',
@@ -39,6 +41,7 @@ const recommendationsData = [
   },
 
   {
+    id: 'manga4',
     title: 'Манга 3',
     description: 'Глава',
     imageUrl: 'https://xlm.ru/storage/uploads/images/2021/01/11/GgFj6JSC832ES6mhh5dXHCIw0YzXH1wTh5zEkLos.jpeg',
@@ -47,6 +50,7 @@ const recommendationsData = [
   },
 
   {
+    id: 'manga5',
     title: 'Манга 3',
     description: 'Глава',
     imageUrl: 'https://xlm.ru/storage/uploads/images/2021/01/11/GgFj6JSC832ES6mhh5dXHCIw0YzXH1wTh5zEkLos.jpeg',
@@ -55,6 +59,7 @@ const recommendationsData = [
   },
 
   {
+    id: 'manga6',
     title: 'Манга 3',
     description: 'Глава',
     imageUrl: 'https://xlm.ru/storage/uploads/images/2021/01/11/GgFj6JSC832ES6mhh5dXHCIw0YzXH1wTh5zEkLos.jpeg',
@@ -63,6 +68,7 @@ const recommendationsData = [
   },
 
   {
+    id: 'manga7',
     title: 'Манга 3',
     description: 'Глава',
     imageUrl: 'https://xlm.ru/storage/uploads/images/2021/01/11/GgFj6JSC832ES6mhh5dXHCIw0YzXH1wTh5zEkLos.jpeg',
@@ -71,6 +77,7 @@ const recommendationsData = [
   },
 
   {
+    id: 'manga8',
     title: 'Манга 3',
     description: 'Глава',
     imageUrl: 'https://xlm.ru/storage/uploads/images/2021/01/11/GgFj6JSC832ES6mhh5dXHCIw0YzXH1wTh5zEkLos.jpeg',
@@ -79,6 +86,7 @@ const recommendationsData = [
   },
 
   {
+    id: 'manga9',
     title: 'Манга 3',
     description: 'Глава',
     imageUrl: 'https://xlm.ru/storage/uploads/images/2021/01/11/GgFj6JSC832ES6mhh5dXHCIw0YzXH1wTh5zEkLos.jpeg',
@@ -87,6 +95,7 @@ const recommendationsData = [
   },
 
   {
+    id: 'manga10',
     title: 'Манга 3',
     description: 'Глава',
     imageUrl: 'https://xlm.ru/storage/uploads/images/2021/01/11/GgFj6JSC832ES6mhh5dXHCIw0YzXH1wTh5zEkLos.jpeg',
@@ -95,6 +104,7 @@ const recommendationsData = [
   },
 
   {
+    id: 'manga11',
     title: 'Манга 3',
     description: 'Глава',
     imageUrl: 'https://xlm.ru/storage/uploads/images/2021/01/11/GgFj6JSC832ES6mhh5dXHCIw0YzXH1wTh5zEkLos.jpeg',
@@ -103,6 +113,7 @@ const recommendationsData = [
   },
 
   {
+    id: 'manga12',
     title: 'Манга 3',
     description: 'Глава',
     imageUrl: 'https://xlm.ru/storage/uploads/images/2021/01/11/GgFj6JSC832ES6mhh5dXHCIw0YzXH1wTh5zEkLos.jpeg',
@@ -111,6 +122,7 @@ const recommendationsData = [
   },
 
   {
+    id: 'manga13',
     title: 'Манга 3',
     description: 'Глава',
     imageUrl: 'https://xlm.ru/storage/uploads/images/2021/01/11/GgFj6JSC832ES6mhh5dXHCIw0YzXH1wTh5zEkLos.jpeg',
@@ -119,6 +131,7 @@ const recommendationsData = [
   },
 
   {
+    id: 'manga14',
     title: 'Манга 1',
     description: 'Глава',
     imageUrl: 'https://xlm.ru/storage/uploads/images/2021/01/11/GgFj6JSC832ES6mhh5dXHCIw0YzXH1wTh5zEkLos.jpeg',
@@ -127,6 +140,7 @@ const recommendationsData = [
   },
 
   {
+    id: 'manga15',
     title: 'Манга 1',
     description: 'Глава',
     imageUrl: 'https://xlm.ru/storage/uploads/images/2021/01/11/GgFj6JSC832ES6mhh5dXHCIw0YzXH1wTh5zEkLos.jpeg',
@@ -149,7 +163,7 @@ export const RecommendationsGrid = () => {
           imageUrl={item.imageUrl}
           rating={item.rating}
           ageRating={item.ageRating}/>
-            </Link>
+          </Link>
         ))}
       </div>
       {/* <Router>
@@ -298,6 +312,7 @@ export const NewsFeed = () => {
       <h4 style={{ color: '#eeeeee', fontWeight: 'bold', margin: '20px 0', marginLeft: '100px' }}>Последние обновления</h4>
       <div style={{ display: 'flex', flexWrap: 'nowrap', overflowX: 'auto' }}>
         {newsData.map((news, index) => (
+          <Link to={`/manga/${news.id}`}>
           <MangaCard
             key={index}
             title={news.title}
@@ -306,6 +321,7 @@ export const NewsFeed = () => {
             rating={news.rating}
             ageRating={news.ageRating}
           />
+          </Link>
         ))}
       </div>
     </>
