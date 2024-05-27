@@ -7,7 +7,7 @@ class TitleController {
         const {author} = req.body;
         const {studio} = req.body;
 
-        const titles = Titles.create({
+        const titles = await Titles.create({
             name: name,
             description: description,
             author: author,
@@ -21,7 +21,8 @@ class TitleController {
     }
 
     async getAll(req, res) {
-        
+        const titles = await Titles.findAll();
+        return res.json(titles);
     }
 
     async getOne(req, res) {
