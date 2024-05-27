@@ -1,3 +1,4 @@
 {
-    "dbURL": "postgres://postgres:postgres@localhost:5433/Manga"
+    "dbURL": "postgres://postgres:postgres@localhost:5433/Manga",
+    "port": 5000
 }

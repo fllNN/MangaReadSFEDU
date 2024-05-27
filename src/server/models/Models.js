@@ -1,9 +1,13 @@
-import { Sequelize, DataTypes } from "sequelize";
-const config = require("config");
+const { Sequelize, DataTypes } = require("sequelize");
+require('dotenv').config({ path: 'C:\MyProject\Git\MangaReadSFEDU\MangaReadSFEDU\.env' });
+// const config = require("config");
 
-const sequelize = new Sequelize(config.get('dbURL'));
 
-export const Users = sequelize.define('users', {
+const DB_URL = "postgres://postgres:postgres@localhost:5433/Manga";
+
+const sequelize = new Sequelize(DB_URL);
+
+const Users = sequelize.define('users', {
     id: {
         type: DataTypes.BIGINT,
         allowNull: false,
@@ -22,9 +26,11 @@ export const Users = sequelize.define('users', {
         type: DataTypes.STRING(50),
         allowNull: false
     }
+}, {
+  schema:'manga'
 });
 
-export const Titles = sequelize.define('titles', {
+const Titles = sequelize.define('titles', {
     id: {
       type: DataTypes.BIGINT,
       allowNull: false,
@@ -45,7 +51,7 @@ export const Titles = sequelize.define('titles', {
     },
     studio: {
       type: DataTypes.STRING(150),
-      allowNull: false,
+      allowNull: false
     },
     rating: {
       type: DataTypes.REAL,
@@ -59,9 +65,11 @@ export const Titles = sequelize.define('titles', {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+}, {
+  schema:'manga'
 });
 
-export const Comments = sequelize.define('comments', {
+const Comments = sequelize.define('comments', {
     id: {
       type: DataTypes.BIGINT,
       allowNull: false,
@@ -78,18 +86,13 @@ export const Comments = sequelize.define('comments', {
     },
     id_title: {
       type: DataTypes.BIGINT,
-    },
-    at_created: {
-      type: DataTypes.DATE,
-      allowNull: false,
-    },
-    at_updated: {
-      type: DataTypes.DATE,
-      allowNull: false,
-    },
+      allowNull: false
+    }
+}, {
+  schema:'manga'
 });
 
-export const Chapters = sequelize.define('chapters', {
+const Chapters = sequelize.define('chapters', {
     id: {
       type: DataTypes.BIGINT,
       allowNull: false,
@@ -112,9 +115,11 @@ export const Chapters = sequelize.define('chapters', {
       type: DataTypes.JSON,
       allowNull: false,
     },
+}, {
+  schema:'manga'
 });
 
-export const Genres = sequelize.define('genres', {
+const Genres = sequelize.define('genres', {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -124,10 +129,12 @@ export const Genres = sequelize.define('genres', {
     name: {
       type: DataTypes.STRING(50),
       allowNull: false,
-    },
+    }
+}, {
+  schema:'manga'
 });
 
-export const Page = sequelize.define('page', {
+const Page = sequelize.define('pages', {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -146,9 +153,11 @@ export const Page = sequelize.define('page', {
       type: DataTypes.STRING(255),
       allowNull: false,
     },
+}, {
+  schema:'manga'
 });
 
-export const Reading = sequelize.define('reading', {
+const Reading = sequelize.define('readings', {
     id: {
       type: DataTypes.BIGINT,
       allowNull: false,
@@ -171,13 +180,15 @@ export const Reading = sequelize.define('reading', {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    at_reading: {
+    readingAt: {
       type: DataTypes.DATE,
       allowNull: false,
     },
+}, {
+  schema:'manga'
 });
 
-export const TitelesChapter = sequelize.define('titele_chapter', {
+const TitelesChapter = sequelize.define('titele_chapters', {
     id: {
       type: DataTypes.BIGINT,
       allowNull: false,
@@ -186,13 +197,17 @@ export const TitelesChapter = sequelize.define('titele_chapter', {
     },
     id_titles: {
       type: DataTypes.BIGINT,
+      allowNull: false
     },
     id_chapters: {
       type: DataTypes.BIGINT,
+      allowNull: false
     },
+}, {
+  schema:'manga'
 });
 
-export const TitleGenres = sequelize.define('title_genres', {
+const TitleGenres = sequelize.define('title_genres', {
     id: {
       type: DataTypes.BIGINT,
       allowNull: false,
@@ -205,6 +220,22 @@ export const TitleGenres = sequelize.define('title_genres', {
     },
     id_genre: {
       type: DataTypes.INTEGER,
+      allowNull: false,
     },
+}, {
+  schema:'manga'
 });
+
+module.exports = {
+  sequelize,
+  Users,
+  Titles,
+  Comments,
+  Chapters,
+  Genres,
+  Page,
+  Reading,
+  TitelesChapter,
+  TitleGenres
+}
 
