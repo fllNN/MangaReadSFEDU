@@ -1,9 +1,22 @@
 const { Sequelize, DataTypes } = require("sequelize");
-require('dotenv').config({ path: 'C:\MyProject\Git\MangaReadSFEDU\MangaReadSFEDU\.env' });
+require('dotenv').config({ path: 'server/.env' });
 
-const DB_URL = process.env.DB_URL;
+const LOCAL_DB_URL = "postgres://postgres:postgres@localhost:5433/Manga";
 
-const sequelize = new Sequelize(DB_URL);
+//const DB_URL = process.env.DB_URL;
+
+// const sequelize = new Sequelize(DB_URL | LOCAL_DB_URL);
+
+const sequelize = new Sequelize(
+  process.env.DB,                 // | 'Manga' 
+  process.env.USER,               // | 'postgres' 
+  process.env.PASSWORD,           // | 'postgres' 
+  {
+    host: process.env.HOST,
+    dialect: process.env.DIALECT,
+    port: process.env.PORT,
+  }
+);
 
 const Users = sequelize.define('users', {
     id: {
@@ -21,7 +34,7 @@ const Users = sequelize.define('users', {
         allowNull: false
     },
     password: {
-        type: DataTypes.STRING(50),
+        type: DataTypes.STRING(255),
         allowNull: false
     }
 }, {
@@ -243,8 +256,8 @@ module.exports = {
   Comments,
   Chapters,
   Genres,
-  Page: Pages,
-  Reading: Readings,
+  Pages,
+  Readings,
   TitelesChapter: TitelesChapters,
   TitleGenres
 }

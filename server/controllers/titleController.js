@@ -1,7 +1,8 @@
 const uuid = require("uuid");
 const path = require("path");
-const {Titles} = require('../models/Models');
+const {Titles, Chapters} = require('../models/Models');
 const ApiError = require("../error/ApiError");
+const { title } = require("process");
 
 class TitleController {
     async create(req, res, next) {
@@ -37,7 +38,14 @@ class TitleController {
     }
 
     async getOne(req, res) {
-        
+        const {id} = req.params;
+        const title = await Titles.findOne(
+            {
+                where: {id}
+            },
+        )
+
+        return res.json(title);
     }
 }
 
