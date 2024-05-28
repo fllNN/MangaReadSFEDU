@@ -37,11 +37,23 @@ class TitleController {
         return res.json(titles);
     }
 
-    async getOne(req, res) {
+    async getOneById(req, res) {
         const {id} = req.params;
         const title = await Titles.findOne(
             {
                 where: {id}
+            },
+        )
+
+        return res.json(title);
+    }
+
+    // Доработать поиск по имени
+    async getOneByName(req, res) {
+        const {name} = req.params;
+        const title = await Titles.findOne(
+            {
+                where: {name: name}
             },
         )
 

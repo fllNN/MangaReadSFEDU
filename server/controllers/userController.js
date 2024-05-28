@@ -3,6 +3,7 @@ const ApiError = require('../error/ApiError');
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { Users, Readings } = require("../models/Models");
+const validator = require("email-validator");
 
 const generateJwt = (id, email, name) => {
     return jwt.sign(
@@ -24,6 +25,10 @@ class UserController {
             const {name ,email, password} = req.body;
             if (!email || !password || !name) {
                 return next(ApiError.badRequest('Некорректные email или password'));
+            }
+            
+            if (!validator.validate(email)) {
+                return next(ApiError.badRequest('Некорректный формат email'));
             }
 
             const condidate = await Users.findOne({where: {email}});
@@ -51,6 +56,10 @@ class UserController {
         try {
             const {email, password} = req.body;
             // const users = Users.findAll();
+            if (!validator.validate(email)) {
+                return next(ApiError.badRequest('Некорректный формат email'));
+            }
+
             const user = await Users.findOne({where:{email: email}});
 
             if(!user) {
