@@ -2,7 +2,6 @@ const uuid = require("uuid");
 const path = require("path");
 const {Titles, Chapters} = require('../models/Models');
 const ApiError = require("../error/ApiError");
-const { title } = require("process");
 
 class TitleController {
     async create(req, res, next) {
@@ -49,7 +48,7 @@ class TitleController {
     }
 
     // Доработать поиск по имени
-    async getOneByName(req, res) {
+    async getOneByName(req, res, next) {
         const {name} = req.params;
         const title = await Titles.findOne(
             {
@@ -57,7 +56,40 @@ class TitleController {
             },
         )
 
+        if (!title) {
+            next(ApiError.notFound("Произведение не найдено"))
+        }
+
         return res.json(title);
+    }
+
+    async getChapters(req, res, next) {
+        const {id} = req.params;
+        const chapters = await Chapters.findAll({
+            where: {id_titles: id}
+        })
+
+        if(!chapters) {
+            next(ApiError.notFound('Список пуст'));
+        }
+
+        return res.json(chapters);
+    }
+
+    async getChapter (req, res, next) {
+        const title = await Titles.findByPk(req.params.id);
+
+        if(!title) {
+            next(ApiError.notFound('Произведение не найдено'));
+        }
+
+        const chapter = await Chapters.findByPk(req.params.id_chapter);
+
+        if(!chapter) {
+            next(ApiError.notFound('Глава не найдено'));
+        }
+
+        return res.json(chapter);
     }
 }
 

@@ -1,16 +1,11 @@
 const { Sequelize, DataTypes } = require("sequelize");
 require('dotenv').config({ path: 'server/.env' });
 
-const LOCAL_DB_URL = "postgres://postgres:postgres@localhost:5433/Manga";
-
-//const DB_URL = process.env.DB_URL;
-
-// const sequelize = new Sequelize(DB_URL | LOCAL_DB_URL);
 
 const sequelize = new Sequelize(
-  process.env.DB,                 // | 'Manga' 
-  process.env.USER,               // | 'postgres' 
-  process.env.PASSWORD,           // | 'postgres' 
+  process.env.DB,                 
+  process.env.USER,               
+  process.env.PASSWORD,            
   {
     host: process.env.HOST,
     dialect: process.env.DIALECT,
@@ -127,7 +122,7 @@ const Chapters = sequelize.define('chapters', {
       allowNull: false,
     },
     pages: {
-      type: DataTypes.JSON,
+      type: DataTypes.ARRAY(DataTypes.STRING),
       allowNull: false,
     },
 }, {
