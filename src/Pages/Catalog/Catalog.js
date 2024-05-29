@@ -117,7 +117,6 @@ export const Catalog = () => {
   const [year, setYear] = useState('Все');
   const [chapters, setChapters] = useState('Все');
 
-
   // Функция для сброса всех фильтров
   const resetFilters = () => {
     setGenre('Все');

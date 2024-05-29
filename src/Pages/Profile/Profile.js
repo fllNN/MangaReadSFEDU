@@ -23,7 +23,7 @@ export const ProfilePage = () => {
   };
 
   return (
-    <Container>
+    <Container style={{ marginBottom: '300px' }}>
       <Row className="align-items-center">
         <Col xs={12} md={4} style={{ padding: '50px 0 0 50px' }}>
           <Image src={profileData.avatarUrl} roundedCircle style={{ width: '250px', height: '250px', marginLeft: '200px' }} />

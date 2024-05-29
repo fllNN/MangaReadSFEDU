@@ -44,38 +44,38 @@
     background-color: #343434; /* Цвет фона форм */
     color: #eeeeee; /* Цвет шрифта */
     padding: 0.5rem; /* Добавляет внутренние отступы */
-  }
+}
   
   /* Стиль для элементов внутри формы, чтобы они наследовали цвет шрифта */
-  .form-group label,
-  .form-group select {
+.form-group label,
+.form-group select {
     color: inherit;
-  }
+}
   
 /* Стили для полей формы и выпадающего списка */
 .form-group .form-control {
     background-color: #343434; /* Цвет фона */
     color: #eeeeee; /* Цвет текста */
     border: 1px solid #343434; /* Цвет границы, совпадающий с фоном */
-  }
+}
   
   /* Стиль для изменения цвета стрелки выпадающего списка */
-  .form-control::-ms-expand {
+.form-control::-ms-expand {
     color: #eeeeee;
-  }
-  .form-control::-webkit-calendar-picker-indicator {
+}
+.form-control::-webkit-calendar-picker-indicator {
     filter: invert(1); /* Инвертирует цвет стрелки для темного фона */
-  }
+}
   
   /* Стили для заголовков формы */
   .form-group label {
     color: #eeeeee; /* Цвет текста */
-  }
+}
 
 .filter-card {
     background-color: #343434; /* Цвет фона карточки */
     color: #eeeeee; /* Цвет шрифта внутри карточки */
-  }
+}
 
 .star-rating .star {
     color: #eeeeee;
@@ -231,4 +231,5 @@ body {
     color: #666666;
     text-align: center;
     padding: 10px 0;
+    min-height: 50px;
 }
