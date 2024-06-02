@@ -3,7 +3,8 @@ import React from 'react';
 import { useState } from 'react';
 import { Card, Container, Row, Col, Image, Button} from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import CommentsSection from '../../Components/CommentsSection';
 
 const mangaData = {
     title: 'Название манги',
@@ -35,7 +36,9 @@ export const MangaDescriptionPage = () => {
             <Row className="my-4 align-items-start" style={{ marginLeft: '100px' }}> {/* Добавлен отступ слева */}
                 <Col xs={12} md={4} className="text-center d-flex flex-column justify-content-start">
                     <Image src={manga.imageUrl} thumbnail style={{ maxWidth: '200px', alignSelf: 'flex-start' }} />
-                    <Button variant="primary" style={{ marginTop: '10px', width: '150px' }}>Читать</Button>
+                    <Link to="/manga/:mangaId/read" style={{ display: 'inline-block', width: '150px' }}>
+                    <Button variant="primary" style={{ marginTop: '10px', width: '100%' }}>Читать</Button>
+                    </Link>
                     <Button variant={isFavorite ? 'danger' : 'outline-danger'} onClick={handleFavoriteClick} style={{ marginTop: '-37px', marginLeft: '155px', width: '50px' }}>
                         {isFavorite ? '❤️' : '🤍'}
                     </Button>
@@ -72,6 +75,7 @@ export const MangaDescriptionPage = () => {
                     </ul>
                 </Col>
             </Row>
+            <CommentsSection />
         </Container>
     );
 };

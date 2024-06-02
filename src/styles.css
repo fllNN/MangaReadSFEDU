@@ -3,8 +3,88 @@
     font-weight: bold;
 }
 
+.input-background {
+    background-color: #eeeeee;
+}
+
+.list-group {
+  background-color: #343434;
+  border-radius: 25px;
+  border-color: #343434;
+  /* Другие стили... */
+}
+
+.list-group-item {
+  /* Стили для элементов списка */
+  padding: 10px;
+  color: #eeeeee;
+  background-color: #343434;
+  border-color: #343434;
+}
+
+
+.list-group-item:hover {
+    background-color: #EEEEEE;
+    color: #343434
+}
+
+.list-group-item:active {
+    background-color: #eeeeee;
+    color: #343434
+}
+
+.list-group-item:focus {
+    background-color: #EEEEEE;
+    color: #343434
+}
+
+/* Стили для формы фильтров */
+.form-group {
+    margin-bottom: 1rem; /* Увеличивает отступ снизу */
+    background-color: #343434; /* Цвет фона форм */
+    color: #eeeeee; /* Цвет шрифта */
+    padding: 0.5rem; /* Добавляет внутренние отступы */
+}
+  
+  /* Стиль для элементов внутри формы, чтобы они наследовали цвет шрифта */
+.form-group label,
+.form-group select {
+    color: inherit;
+}
+  
+/* Стили для полей формы и выпадающего списка */
+.form-group .form-control {
+    background-color: #343434; /* Цвет фона */
+    color: #eeeeee; /* Цвет текста */
+    border: 1px solid #343434; /* Цвет границы, совпадающий с фоном */
+}
+  
+  /* Стиль для изменения цвета стрелки выпадающего списка */
+.form-control::-ms-expand {
+    color: #eeeeee;
+}
+.form-control::-webkit-calendar-picker-indicator {
+    filter: invert(1); /* Инвертирует цвет стрелки для темного фона */
+}
+  
+  /* Стили для заголовков формы */
+  .form-group label {
+    color: #eeeeee; /* Цвет текста */
+}
+
+.filter-card {
+    background-color: #343434; /* Цвет фона карточки */
+    color: #eeeeee; /* Цвет шрифта внутри карточки */
+}
+
 .star-rating .star {
     color: #eeeeee;
+  }
+
+  .card {
+    background-color: #292929; /* Цвет фона карточки */
+    color: #eeeeee; /* Цвет шрифта внутри карточки */
+    border: none; /* Убирает обводку */
   }
   
   .star-rating .on {
@@ -78,8 +158,8 @@ a {
 .form-control,
 .form-check-input {
     color: #eeeeee; /* Цвет текста полей формы */
-    background-color: #eeeeee; /* Фоновый цвет полей формы */
-    border: 1px solid #eeeeee; /* Цвет границы полей формы */
+    background-color: #292929; /* Фоновый цвет полей формы */
+    border: 1px solid #292929; /* Цвет границы полей формы */
 }
 
 /* Изменение цвета текста меток формы */
@@ -107,7 +187,7 @@ a {
 }
 
 .form-group {
-    margin-bottom: 1rem; /* Увеличиваем отступ снизу для всех .form-group */
+    margin-bottom: 20px; /* Увеличиваем отступ снизу для всех .form-group */
 }
 
 #emailFormGroup {
@@ -120,12 +200,36 @@ a {
 }
 
 
-h1 {
+h1, h2, h3, h4, h5, h6 {
     color:#EEEEEE;
 }
 
 body {
     background-color: #292929;
     font-weight: bold;
+    margin: 0;
+    padding-bottom: 60px; /* Высота футера */
   }
   
+  html, body {
+    height: 100%;
+    position: 0;
+}
+
+#root {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    flex: 1;
+}
+
+.footer {
+    background-color: #343434;
+    color: #666666;
+    text-align: center;
+    padding: 10px 0;
+    min-height: 50px;
+}
