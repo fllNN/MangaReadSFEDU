@@ -31,6 +31,27 @@ class TitleController {
         }
     }
 
+    async createWithoutStatic(req, res, next) {
+        try {
+            const {name, description, author, studio, img} = req.body;
+
+            const titles = await Titles.create({
+                name: name,
+                description: description,
+                author: author,
+                studio: studio,
+                rating: 0.0,
+                amount_of_ratings: 0,
+                chapters: 0,
+                img: img
+            });
+
+            return res.json(titles);
+        } catch (error) {
+            next(ApiError.badRequest(error.message));
+        }
+    }
+
     async getAll(req, res) {
         const titles = await Titles.findAll();
         return res.json(titles);

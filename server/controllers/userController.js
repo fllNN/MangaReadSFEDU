@@ -4,6 +4,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { Users, Readings } = require("../models/Models");
 const validator = require("email-validator");
+const { Op } = require('sequelize');
 
 const generateJwt = (id, email, name) => {
     return jwt.sign(
@@ -56,11 +57,12 @@ class UserController {
         try {
             const {email, password} = req.body;
             // const users = Users.findAll();
-            if (!validator.validate(email)) {
-                return next(ApiError.badRequest('Некорректный формат email'));
-            }
-
-            const user = await Users.findOne({where:{email: email}});
+            
+            const user = await Users.findOne({where:
+                {
+                    [Op.or]: [{email: email}, {name: email}]
+                }
+            });
 
             if(!user) {
                 return next(ApiError.internal('Неверный email или пароль'));
