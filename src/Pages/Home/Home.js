@@ -1,6 +1,5 @@
 import React from "react";
-import { Card } from 'react-bootstrap';
-import { Link, Route, Router } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import MangaCard from '../../Components/MangaCard';
 // import { MangaDescriptionPage } from './Pages/Manga/Manga';
 
@@ -153,7 +152,7 @@ export const RecommendationsGrid = () => {
   return (
     <>
       <h4 style={{ color: '#eeeeee', margin: '80px 0 25px', marginLeft: '100px', fontWeight: 'bold' }}>Популярное</h4>
-      <div style={{ display: 'grid', gridGap: '5px', gridTemplateColumns: 'repeat(5, 1fr)', justifyContent: 'center', gridGap: '20px', marginBottom: '20px', marginLeft: '100px'}}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', justifyContent: 'center', gridGap: '20px', marginBottom: '20px', marginLeft: '100px'}}>
         {recommendationsData.map((item, index) => (
         <Link to={`/manga/${item.id}`}>
           <MangaCard
@@ -202,6 +201,7 @@ export const Banner = () => (
 
 const newsData = [
   {
+    id: 'manga1',
     title: 'Манга 1',
     description: 'Глава',
     imageUrl: 'https://xlm.ru/storage/uploads/images/2021/01/11/GgFj6JSC832ES6mhh5dXHCIw0YzXH1wTh5zEkLos.jpeg',
@@ -307,6 +307,24 @@ const newsData = [
 ];
 
 export const NewsFeed = () => {
+
+  // const [newsData, setNewsData] = useState([]);
+
+  // useEffect(() => {
+  //   // Функция для получения данных из базы данных
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await fetch('/path/to/your/api');
+  //       const data = await response.json();
+  //       setNewsData(data);
+  //     } catch (error) {
+  //       console.error('Ошибка при получении данных:', error);
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, []);
+
   return (
     <>
       <h4 style={{ color: '#eeeeee', fontWeight: 'bold', margin: '20px 0', marginLeft: '100px' }}>Последние обновления</h4>

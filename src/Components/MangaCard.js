@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
 
-const MangaCard = ({ title, description, imageUrl, rating, ageRating }) => {
+const MangaCard = ({ id, title, description, imageUrl, rating, ageRating }) => {
     return (
       <Card style={{ width: '160px', margin: '5px', flex: '0 0 auto', backgroundColor: '#292929' }}>
         <div style={{ position: 'relative' }}>

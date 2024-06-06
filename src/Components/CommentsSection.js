@@ -14,7 +14,7 @@ const CommentsSection = () => {
     };
 
     return (
-        <Container className="comments-section" style={{
+        <Container style={{
             borderRadius: '0px', // Скругление углов
             height: '250px', // Фиксированная высота блока
             width: '650px', // Ширина блока уменьшена в два раза

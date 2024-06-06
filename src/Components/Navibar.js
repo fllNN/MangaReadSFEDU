@@ -1,13 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import animeHeadIcon from './anih.png';
-import { Button, Nav, Navbar, Modal, Form, FormControl } from 'react-bootstrap';
+import { Button, Nav, Navbar, FormControl } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import '../styles.css'
+import Authrization from './Authorization';
+
+const users = [
+    { id: 1, email: 'user1@example.com', password: 'password1', username: 'UserOne' },
+    { id: 2, email: 'user2@example.com', password: 'password2', username: 'UserTwo' },
+    // ... другие пользователи
+  ];
 
 export default function Navibar() {
+
     const [showModal, setShowModal] = useState(false);
-    const [isLogin, setIsLogin] = useState(true); // Добавлено новое состояние для отслеживания формы
+    const [isLogin, setIsLogin] = useState(true);
     const [search, setSearch] = useState(false);
+    const [currentUser, setCurrentUser] = useState(null);
 
     const handleClose = () => setShowModal(false);
     const handleShow = () => setShowModal(true);
@@ -35,6 +44,17 @@ export default function Navibar() {
         };
     }, [search]); // Зависимость от состояния search
 
+    const handleLogin = (email, password) => {
+        const user = users.find(u => u.email === email && u.password === password);
+        if (user) {
+            setCurrentUser(user);
+            handleClose(); // Закрыть модальное окно после входа
+        } else {
+            // Обработка ошибки входа
+            alert('Неверный email или пароль');
+        }
+    };
+
     return (
         <>
             <Navbar collapseOnSelect expand="lg" bg="#343434" variant="dark">
@@ -53,7 +73,7 @@ export default function Navibar() {
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="mr-auto" style={{ marginLeft: '120px' }}> 
                         <Nav.Link as={Link} to="/">Главная</Nav.Link> 
-                        <Nav.Link as={Link} to="/favorites">Избранное</Nav.Link>
+                        {currentUser && <Nav.Link as={Link} to="/favorites">Избранное</Nav.Link>}
                         <Nav.Link as={Link} to="/catalog">Каталог</Nav.Link>
                         {search ? (
                             <FormControl
@@ -69,63 +89,30 @@ export default function Navibar() {
                         )}
                     </Nav>
                     <Nav className="ms-auto">
+                    {
+                    currentUser ? (
+                        <Link to="/profile" style={{ textDecoration: 'none' }}>
+                        <div style={{ color: 'white' }}>
+                            {currentUser.email}
+                        </div>
+                        </Link>
+                    ) : (
                         <Button variant="primary" onClick={handleShow}>
-                            Войти
+                        Войти
                         </Button>
+                    )
+                    }
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
 
-            <Modal show={showModal} onHide={handleClose} centered>
-                <Modal.Header closeButton>
-                    <Modal.Title>{isLogin ? 'Войти' : 'Регистрация'}</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    {isLogin ? (
-                        // Форма входа
-                        <Form>
-                            <Form.Group controlId="fromBasicEmail" id="emailFormGroup">
-                                <Form.Label>Email</Form.Label>
-                                <Form.Control type="email" placeholder="Введите почту" style={{backgroundColor: '#eeeeee'}}/>
-                            </Form.Group>
-                            <Form.Group controlId="fromBasicPassword" className="mb-3">
-                                <Form.Label>Пароль</Form.Label>
-                                <Form.Control type="password" placeholder="Введите пароль" style={{backgroundColor: '#eeeeee'}}/>
-                            </Form.Group>
-                            <Form.Group controlId="fromBasicCheckbox">
-                                <Form.Check type="checkbox" label="запомнить меня" style={{color: '#eeeeee'}}/>
-                            </Form.Group>
-                            <div className="mt-3">
-                                Нет аккаунта? <span className="link-primary" style={{ cursor: 'pointer' }} onClick={toggleForm}>Зарегистрироваться</span>
-                            </div>
-                        </Form>
-                    ) : (
-                        // Форма регистрации
-                        <Form>
-                            <Form.Group controlId="fromBasicEmail" id="emailFormGroup">
-                                <Form.Label>Email</Form.Label>
-                                <Form.Control type="email" placeholder="Введите почту" style={{backgroundColor: '#eeeeee'}}/>
-                            </Form.Group>
-                            <Form.Group controlId="fromBasicPassword" className="mb-3">
-                                <Form.Label>Пароль</Form.Label>
-                                <Form.Control type="password" placeholder="Введите пароль" style={{backgroundColor: '#eeeeee'}}/>
-                            </Form.Group>
-                            <Form.Group controlId="fromBasicPasswordRepeat" className="mb-3">
-                                <Form.Label>Повторите пароль</Form.Label>
-                                <Form.Control type="password" placeholder="Введите пароль еще раз" style={{backgroundColor: '#eeeeee'}}/>
-                            </Form.Group>
-                            <div className="mt-3">
-                                Уже есть аккаунт? <span className="link-primary" style={{ cursor: 'pointer' }} onClick={toggleForm}>Войти</span>
-                            </div>
-                        </Form>
-                    )}
-                </Modal.Body>
-                <Modal.Footer>
-                <Link to="/profile">
-                    <Button variant="primary">{isLogin ? 'Войти' : 'Зарегистрироваться'}</Button>
-                </Link>
-                </Modal.Footer>
-            </Modal>
+            <Authrization
+                showModal={showModal}
+                handleClose={handleClose}
+                isLogin={isLogin}
+                toggleForm={toggleForm}
+                handleLogin={handleLogin}
+            />
         </>
     );
 }

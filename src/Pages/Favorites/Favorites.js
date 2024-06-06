@@ -1,6 +1,4 @@
 import React from 'react';
-import { Card } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 import MangaCardFav from '../../Components/MangaCardFav';
 
 const favoritesData = [

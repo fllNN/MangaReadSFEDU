@@ -7,6 +7,7 @@ import { useState } from 'react';
 
 const mangaList = [
     {
+      id: 'manga1',
       title: 'Манга 1',
       description: 'Глава',
       imageUrl: 'https://xlm.ru/storage/uploads/images/2021/01/11/GgFj6JSC832ES6mhh5dXHCIw0YzXH1wTh5zEkLos.jpeg',
