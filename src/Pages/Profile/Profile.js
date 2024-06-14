@@ -5,7 +5,7 @@ export const ProfilePage = () => {
   const [profileData, setProfileData] = useState({
     name: 'Имя пользователя',
     status: 'Статус',
-    avatarUrl: 'https://xlm.ru/storage/uploads/images/2021/01/11/GgFj6JSC832ES6mhh5dXHCIw0YzXH1wTh5zEkLos.jpeg',
+    avatarUrl: 'https://cdn.icon-icons.com/icons2/876/PNG/512/young-man-avatar-on-round-button_icon-icons.com_68262.png',
     isEditing: false
   });
 

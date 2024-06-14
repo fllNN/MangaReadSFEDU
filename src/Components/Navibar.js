@@ -4,6 +4,7 @@ import { Button, Nav, Navbar, FormControl } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import '../styles.css'
 import Authrization from './Authorization';
+import axios from 'axios';
 
 const users = [
     { id: 1, email: 'user1@example.com', password: 'password1', username: 'UserOne' },
@@ -54,6 +55,25 @@ export default function Navibar() {
             alert('Неверный email или пароль');
         }
     };
+
+    // const handleLogin = async (email, password) => {
+    //     try {
+    //         // Отправляем POST-запрос на сервер для входа пользователя
+    //         const response = await axios.post('http://localhost:3000/login', { email, password });
+    //         // Если сервер вернул данные пользователя, сохраняем их и закрываем модальное окно
+    //         if (response.data.user) {
+    //             setCurrentUser(response.data.user);
+    //             handleClose();
+    //         } else {
+    //             // Если данные не вернулись, выводим сообщение об ошибке
+    //             alert('Неверный email или пароль');
+    //         }
+    //     } catch (error) {
+    //         // Обработка ошибок при запросе
+    //         console.error('Ошибка при входе:', error);
+    //         alert('Произошла ошибка при попытке входа');
+    //     }
+    // };
 
     return (
         <>

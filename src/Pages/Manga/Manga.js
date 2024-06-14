@@ -20,6 +20,8 @@ export const MangaDescriptionPage = () => {
 
     // Здесь вы можете получить данные манги по ID, если они хранятся в базе данных или API
     //const manga = getMangaById(mangaId);
+
+    
     const manga = mangaData;
 
     const [isFavorite, setIsFavorite] = useState(false);
@@ -30,6 +32,21 @@ export const MangaDescriptionPage = () => {
 
     const [rating, setRating] = useState(0);
     const [hover, setHover] = useState(0);
+
+    // const [manga, setManga] = useState(null);
+
+    // useEffect(() => {
+    //     const fetchMangaData = async () => {
+    //         try {
+    //             const response = await axios.get(`http://localhost:3000/manga/${mangaId}`);
+    //             setManga(response.data);
+    //         } catch (error) {
+    //             console.error('Ошибка при получении данных о манге:', error);
+    //         }
+    //     };
+
+    //     fetchMangaData();
+    // }, [mangaId]); 
 
     return (
         <Container>

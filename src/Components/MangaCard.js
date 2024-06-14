@@ -5,7 +5,7 @@ const MangaCard = ({ id, title, description, imageUrl, rating, ageRating }) => {
     return (
       <Card style={{ width: '160px', margin: '5px', flex: '0 0 auto', backgroundColor: '#292929' }}>
         <div style={{ position: 'relative' }}>
-          <Card.Img variant="top" src={imageUrl} style={{ width: '160px', height: 'auto' }} />
+          <Card.Img variant="top" src={imageUrl} style={{ width: '160px', height: '242px' }} />
           {ageRating && (
             <span
               style={{
