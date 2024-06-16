@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useNavigate } from 'react';
 import animeHeadIcon from './anih.png';
 import { Button, Nav, Navbar, FormControl } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
@@ -6,11 +6,11 @@ import '../styles.css'
 import Authrization from './Authorization';
 import axios from 'axios';
 
-const users = [
-    { id: 1, email: 'user1@example.com', password: 'password1', username: 'UserOne' },
-    { id: 2, email: 'user2@example.com', password: 'password2', username: 'UserTwo' },
-    // ... другие пользователи
-  ];
+// const users = [
+//     { id: 1, email: 'user1@example.com', password: 'password1', username: 'UserOne' },
+//     { id: 2, email: 'user2@example.com', password: 'password2', username: 'UserTwo' },
+//     // ... другие пользователи
+//   ];
 
 export default function Navibar() {
 
@@ -45,35 +45,63 @@ export default function Navibar() {
         };
     }, [search]); // Зависимость от состояния search
 
-    const handleLogin = (email, password) => {
-        const user = users.find(u => u.email === email && u.password === password);
-        if (user) {
-            setCurrentUser(user);
-            handleClose(); // Закрыть модальное окно после входа
-        } else {
-            // Обработка ошибки входа
-            alert('Неверный email или пароль');
-        }
-    };
-
-    // const handleLogin = async (email, password) => {
-    //     try {
-    //         // Отправляем POST-запрос на сервер для входа пользователя
-    //         const response = await axios.post('http://localhost:3000/login', { email, password });
-    //         // Если сервер вернул данные пользователя, сохраняем их и закрываем модальное окно
-    //         if (response.data.user) {
-    //             setCurrentUser(response.data.user);
-    //             handleClose();
-    //         } else {
-    //             // Если данные не вернулись, выводим сообщение об ошибке
-    //             alert('Неверный email или пароль');
-    //         }
-    //     } catch (error) {
-    //         // Обработка ошибок при запросе
-    //         console.error('Ошибка при входе:', error);
-    //         alert('Произошла ошибка при попытке входа');
+    // const handleLogin = (email, password) => {
+    //     const user = users.find(u => u.email === email && u.password === password);
+    //     if (user) {
+    //         setCurrentUser(user);
+    //         handleClose(); // Закрыть модальное окно после входа
+    //     } else {
+    //         // Обработка ошибки входа
+    //         alert('Неверный email или пароль');
     //     }
     // };
+
+    // const [mangaList, setMangaList] = useState([]); // Состояние для списка манги
+    // const [searchTerm, setSearchTerm] = useState(''); // Состояние для поискового запроса
+    // const navigate = useNavigate(); // Хук для программной навигации
+
+    // useEffect(() => {
+    //     // Загрузка данных манги из JSON файла на GitHub
+    //     const fetchMangaData = async () => {
+    //       const response = await fetch('https://raw.githubusercontent.com/fllNN/MangaReadSFEDU/dev-front/recommendationsData.json');
+    //       const mangaData = await response.json();
+    //       setMangaList(mangaData);
+    //     };
+    
+    //     fetchMangaData();
+    //   }, []);
+
+    //   const handleSearchChange = (event) => {
+    //     setSearchTerm(event.target.value);
+    //   };
+    
+    //   const handleSearchSubmit = () => {
+    //     // Поиск манги по названию
+    //     const foundManga = mangaList.find(manga => manga.title.toLowerCase().includes(searchTerm.toLowerCase()));
+    //     if (foundManga) {
+    //       // Если манга найдена, переходим на её страницу
+    //       navigate(`/manga/${foundManga.id}`);
+    //     }
+    //   };
+
+    const handleLogin = async (email, password) => {
+        try {
+            // Отправляем POST-запрос на сервер для входа пользователя
+            const response = await axios.post('http://localhost:3000/login', { email, password });
+            // Если сервер вернул данные пользователя, сохраняем их и закрываем модальное окно
+            if (response.data.user) {
+                setCurrentUser(response.data.user);
+                handleClose();
+            } else {
+                // Если данные не вернулись, выводим сообщение об ошибке
+                alert('Неверный email или пароль');
+            }
+        } catch (error) {
+            // Обработка ошибок при запросе
+            console.error('Ошибка при входе:', error);
+            alert('Произошла ошибка при попытке входа');
+        }
+    };
 
     return (
         <>
@@ -96,12 +124,15 @@ export default function Navibar() {
                         {currentUser && <Nav.Link as={Link} to="/favorites">Избранное</Nav.Link>}
                         <Nav.Link as={Link} to="/catalog">Каталог</Nav.Link>
                         {search ? (
-                            <FormControl
-                                type="text"
-                                placeholder="Поиск..."
-                                className="mr-sm-2 search-input"
-                                autoFocus
-                            />
+                                 <FormControl
+                                 type="text"
+                                 placeholder="Поиск..."
+                                 className="mr-sm-2 search-input"
+                                 autoFocus
+                                //  value={searchTerm}
+                                //  onChange={handleSearchChange}
+                                //  onKeyPress={event => event.key === 'Enter' && handleSearchSubmit()}
+                               />
                             ) : (
                             <Button variant="outline-info" onClick={handleSearchToggle} className="search-button">
                                 Поиск
