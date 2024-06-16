@@ -56,38 +56,37 @@ export default function Navibar() {
     //     }
     // };
 
-    // const [mangaList, setMangaList] = useState([]); // Состояние для списка манги
-    // const [searchTerm, setSearchTerm] = useState(''); // Состояние для поискового запроса
-    // const navigate = useNavigate(); // Хук для программной навигации
+    const [mangaList, setMangaList] = useState([]); // Состояние для списка манги
+    const [searchTerm, setSearchTerm] = useState(''); // Состояние для поискового запроса
+    const navigate = useNavigate(); // Хук для программной навигации
 
-    // useEffect(() => {
-    //     // Загрузка данных манги из JSON файла на GitHub
-    //     const fetchMangaData = async () => {
-    //       const response = await fetch('https://raw.githubusercontent.com/fllNN/MangaReadSFEDU/dev-front/recommendationsData.json');
-    //       const mangaData = await response.json();
-    //       setMangaList(mangaData);
-    //     };
+    useEffect(() => {
+        const fetchMangaData = async () => {
+          const response = await fetch('https://raw.githubusercontent.com/fllNN/MangaReadSFEDU/dev-front/recommendationsData.json');
+          const mangaData = await response.json();
+          setMangaList(mangaData);
+        };
     
-    //     fetchMangaData();
-    //   }, []);
+        fetchMangaData();
+      }, []);
 
-    //   const handleSearchChange = (event) => {
-    //     setSearchTerm(event.target.value);
-    //   };
+      const handleSearchChange = (event) => {
+        setSearchTerm(event.target.value);
+      };
     
-    //   const handleSearchSubmit = () => {
-    //     // Поиск манги по названию
-    //     const foundManga = mangaList.find(manga => manga.title.toLowerCase().includes(searchTerm.toLowerCase()));
-    //     if (foundManga) {
-    //       // Если манга найдена, переходим на её страницу
-    //       navigate(`/manga/${foundManga.id}`);
-    //     }
-    //   };
+      const handleSearchSubmit = () => {
+        // Поиск манги по названию
+        const foundManga = mangaList.find(manga => manga.title.toLowerCase().includes(searchTerm.toLowerCase()));
+        if (foundManga) {
+          // Если манга найдена, переходим на её страницу
+          navigate(`/manga/${foundManga.id}`);
+        }
+      };
 
     const handleLogin = async (email, password) => {
         try {
             // Отправляем POST-запрос на сервер для входа пользователя
-            const response = await axios.post('http://localhost:3000/login', { email, password });
+            const response = await axios.post('https://raw.githubusercontent.com/fllNN/MangaReadSFEDU/dev-front/users.json', { email, password });
             // Если сервер вернул данные пользователя, сохраняем их и закрываем модальное окно
             if (response.data.user) {
                 setCurrentUser(response.data.user);
@@ -129,9 +128,9 @@ export default function Navibar() {
                                  placeholder="Поиск..."
                                  className="mr-sm-2 search-input"
                                  autoFocus
-                                //  value={searchTerm}
-                                //  onChange={handleSearchChange}
-                                //  onKeyPress={event => event.key === 'Enter' && handleSearchSubmit()}
+                                 value={searchTerm}
+                                 onChange={handleSearchChange}
+                                 onKeyPress={event => event.key === 'Enter' && handleSearchSubmit()}
                                />
                             ) : (
                             <Button variant="outline-info" onClick={handleSearchToggle} className="search-button">
