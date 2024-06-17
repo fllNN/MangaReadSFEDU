@@ -2,13 +2,15 @@ const uuid = require("uuid");
 const path = require("path");
 const {Titles, Chapters} = require('../models/Models');
 const ApiError = require("../error/ApiError");
+const CyrillicToTranslit = require("cyrillic-to-translit-js");
 
 class TitleController {
     async create(req, res, next) {
         try {
             const {name, description, author, studio} = req.body;
             const {img} = req.files;
-            let fileName = uuid.v4() + ".jpg";
+            const cyrillicToTranslit = new CyrillicToTranslit();
+            let fileName = cyrillicToTranslit.transform(name, "_") + ".jpg";
             img.mv(path.resolve(__dirname, '..', 'static', fileName), (err) => {
                 if (err) console.log(err);
                 else console.log("File Uploaded");
@@ -123,20 +125,22 @@ class TitleController {
 
             const { files } = req.files;
 
-            if (!files || files.length === 0) {        // Object.keys(req.files).length
+            // Проверка: Загружены ли файлы?
+            if (!files || files.length === 0) {
                 return next(ApiError.badRequest('Файлы не загружены.'));
             }
             
-              // Извлечение имен файлов из запроса
+            const cyrillicToTranslit = new CyrillicToTranslit();
+            // Извлечение имен файлов из запроса
             const fileNames = [];
             for (let file of files) {
-                let fileName = uuid.v4() + ".jpeg";
+                let fileName = file.name + "_" + cyrillicToTranslit.transform(name, "_") + ".jpeg";
                 file.mv(path.resolve(__dirname, '..', 'static', fileName), (err) => {
                     if (err) console.log(err);
                     else console.log("Файл загружен");
                 });
 
-                fileNames.push(file.name);
+                fileNames.push(fileName);
             }
 
             const chapter = await Chapters.create({
