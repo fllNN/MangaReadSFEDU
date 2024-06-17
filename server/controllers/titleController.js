@@ -5,10 +5,17 @@ const ApiError = require("../error/ApiError");
 const CyrillicToTranslit = require("cyrillic-to-translit-js");
 
 class TitleController {
+
+    // Создание нового произведения
     async create(req, res, next) {
         try {
+            // Получаем информацию о произведении из тела запроса
+            // Получаем: название, описание, автора, студию, обложку
             const {name, description, author, studio} = req.body;
             const {img} = req.files;
+
+            // Преобразуем русские символы в латиницу, 
+            // состваляем новое имя обложки и сохраняем в static.
             const cyrillicToTranslit = new CyrillicToTranslit();
             let fileName = cyrillicToTranslit.transform(name, "_") + ".jpg";
             img.mv(path.resolve(__dirname, '..', 'static', fileName), (err) => {
@@ -16,6 +23,7 @@ class TitleController {
                 else console.log("File Uploaded");
             });
 
+            // Сохраняем произведение в базе данных
             const titles = await Titles.create({
                 name: name,
                 description: description,
@@ -27,6 +35,7 @@ class TitleController {
                 img: fileName
             });
 
+            // Отправляем информацию о произведении на клиента
             return res.json(titles);
         } catch (error) {
             next(ApiError.badRequest(error.message));
@@ -54,11 +63,13 @@ class TitleController {
         }
     }
 
+    // Получение всех глав произведения
     async getAll(req, res) {
         const titles = await Titles.findAll();
         return res.json(titles);
     }
 
+    // Получение произведения по его ID
     async getOneById(req, res) {
         const {id} = req.params;
         const title = await Titles.findOne(
@@ -70,7 +81,7 @@ class TitleController {
         return res.json(title);
     }
 
-    // Доработать поиск по имени
+    // ДОРАБОТАТЬ ПОИСК ПО ИМЕНИ
     async getOneByName(req, res, next) {
         const {name} = req.params;
         const title = await Titles.findOne(
@@ -86,6 +97,7 @@ class TitleController {
         return res.json(title);
     }
 
+    // Получение глав произведения
     async getChapters(req, res, next) {
         const {id} = req.params;
         const chapters = await Chapters.findAll({
@@ -99,6 +111,7 @@ class TitleController {
         return res.json(chapters);
     }
 
+    // Получение главы произведения
     async getChapter (req, res, next) {
         const title = await Titles.findByPk(req.params.id);
 
@@ -119,6 +132,7 @@ class TitleController {
         return res.json(chapter);
     }
 
+    // Добавление новой главы произведения
     async createChapter(req, res) {
         try {
             const { id, number, name } = req.body;
