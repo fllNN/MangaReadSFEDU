@@ -121,14 +121,16 @@ class TitleController {
         try {
             const { id, number, name } = req.body;
 
-            if (!req.files || Object.keys(req.files).length === 0) {
+            const { files } = req.files;
+
+            if (!files || files.length === 0) {        // Object.keys(req.files).length
                 return next(ApiError.badRequest('Файлы не загружены.'));
             }
             
               // Извлечение имен файлов из запроса
             const fileNames = [];
-            for (const file of Object.values(req.files)) {
-                let fileName = uuid.v4() + ".jpg";
+            for (let file of files) {
+                let fileName = uuid.v4() + ".jpeg";
                 file.mv(path.resolve(__dirname, '..', 'static', fileName), (err) => {
                     if (err) console.log(err);
                     else console.log("Файл загружен");
