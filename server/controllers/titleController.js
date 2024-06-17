@@ -8,7 +8,7 @@ class TitleController {
 
     // Создание нового произведения
     async create(req, res, next) {
-        try {
+        try { 
             // Получаем информацию о произведении из тела запроса
             // Получаем: название, описание, автора, студию, обложку
             const {name, description, author, studio} = req.body;
